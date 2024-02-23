@@ -51,5 +51,6 @@ const com = combine(1, 2)
 console.log(com);
 
 type User = { name: string } | string;
-let u1: User = {name: 'Max'};
+let u1: User = { name: 'Max' };
+
 u1 = 'Michael';
