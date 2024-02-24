@@ -54,3 +54,13 @@ type User = { name: string } | string;
 let u1: User = { name: 'Max' };
 
 u1 = 'Michael';
+
+const app = (a: number): void  => {
+    a = 10
+    console.log(a);
+}
+
+let value = 5;
+console.log(value);
+app(value);
+console.log(value);
