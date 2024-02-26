@@ -224,3 +224,21 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({type: 'bird', flyingSpeed: 1000})
+
+
+
+// const userInput = <HTMLInputElement>document.getElementById('user-input')!
+const userInput = document.getElementById('user-input')! as HTMLInputElement
+
+
+
+interface ErrorConteainer{
+    [prop: string]: string
+}
+
+const errorBag: ErrorConteainer = {
+    email: 'Not a valid email!',
+    username:'Must start with a capital character!'
+}
+
+

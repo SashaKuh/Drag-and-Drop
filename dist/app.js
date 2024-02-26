@@ -55,3 +55,8 @@ function moveAnimal(animal) {
     console.log(speed);
 }
 moveAnimal({ type: 'bird', flyingSpeed: 1000 });
+const userInput = document.getElementById('user-input');
+const errorBag = {
+    email: 'Not a valid email!',
+    username: 'Must start with a capital character!'
+};
