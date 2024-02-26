@@ -1,10 +1,12 @@
 "use strict";
-let user;
-user = {
-    name: 'John',
-    age: 34,
-    great(phrase) {
-        console.log(phrase + '' + this.name);
+class People {
+    constructor() {
+        this.name = 'John';
+        this.age = 34;
     }
-};
-user.great('hi hello world');
+    great(phrase) {
+        console.log(phrase + ' ' + this.name);
+    }
+}
+const people = new People;
+people.great('hi hello world');

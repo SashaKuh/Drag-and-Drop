@@ -95,13 +95,26 @@ interface Person{
     great(phrase: string): void;
 }
 
-let user: Person;
+// let user: Person;
 
-user = {
-    name: 'John',
-    age: 34,
-    great(phrase) {
-        console.log(phrase + '' + this.name);
+// user = {
+//     name: 'John',
+//     age: 34,
+//     great(phrase) {
+//         console.log(phrase + '' + this.name);
+//     }
+// }
+// user.great('hi hello world')
+
+class People implements Person {
+    name = 'John';
+    age = 34;
+
+    great(phrase: string): void {
+        console.log(phrase + ' ' + this.name);
     }
 }
-user.great('hi hello world')
+
+const people = new People 
+people.great('hi hello world')
+
