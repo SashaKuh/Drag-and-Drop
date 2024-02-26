@@ -1,62 +1,21 @@
 "use strict";
-const combain = {
-    name: 'Combat',
-    privileges: ['create-server'],
-    startDate: new Date()
-};
-const add = (a, b) => {
-    if (typeof a === 'string' || typeof b === 'string') {
-        return a.toString() + b.toString();
-    }
-    return a + a;
-};
-const printEmployeeInformation = (emp) => {
-    console.log('Name: ' + emp.name);
-    if ('privileges' in emp) {
-        console.log('Privileges: ' + emp.privileges);
-    }
-    if ('startDate' in emp) {
-        console.log('Start Date: ' + emp.startDate);
-    }
-};
-printEmployeeInformation(combain);
-class Car {
-    drive() {
-        console.log('Driving...');
-    }
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
 }
-class Truck {
-    drive() {
-        console.log('Driving a truck...');
+const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+console.log(mergedObj);
+function countAndDescribe(element) {
+    let descriptionText = 'Go no value.';
+    if (element.length === 1) {
+        descriptionText = 'Go 1 element.';
     }
-    loadCargo(amount) {
-        console.log('Loading cargo ...' + amount);
+    else if (element.length > 1) {
+        descriptionText = 'Go ' + element.length + ' elements.';
     }
+    return [element, descriptionText];
 }
-const v1 = new Car();
-const v2 = new Truck();
-function useVihivle(vih) {
-    vih.drive();
-    if (vih instanceof Truck) {
-        vih.loadCargo(1000);
-    }
+console.log(countAndDescribe(['Sports', 'Cooking']));
+function extreactAndConvert(obj, key) {
+    return 'Value: ' + obj[key];
 }
-useVihivle(v1);
-useVihivle(v2);
-function moveAnimal(animal) {
-    let speed;
-    switch (animal.type) {
-        case 'bird':
-            speed = animal.flyingSpeed;
-            break;
-        case 'horse':
-            speed = animal.runningSpeed;
-    }
-    console.log(speed);
-}
-moveAnimal({ type: 'bird', flyingSpeed: 1000 });
-const userInput = document.getElementById('user-input');
-const errorBag = {
-    email: 'Not a valid email!',
-    username: 'Must start with a capital character!'
-};
+extreactAndConvert({ name: 'Max' }, 'name');

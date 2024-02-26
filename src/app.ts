@@ -122,123 +122,176 @@
 
 // Advanced types ----------------------------------------------------------------
 
-type Admin = {
-    name: string;
-    privileges: string[];
+// type Admin = {
+//     name: string;
+//     privileges: string[];
+// }
+
+// type Employee = {
+//     name: string;
+//     startDate: Date;
+// }
+
+// type Combat = Admin & Employee
+
+// const combain: Combat = {
+//     name: 'Combat',
+//     privileges: ['create-server'],
+//     startDate: new Date()
+// }
+
+// type Combinable = string | number
+// type Numeric = number | boolean
+
+// type Universal = Combinable & Numeric
+
+// const add = (a: Combinable, b: Combinable) => {
+//     if (typeof a === 'string' || typeof b === 'string') {
+//         return a.toString() + b.toString()
+//     }
+//     return a + a
+// }
+
+// type UnknownEmployee = Employee | Admin
+
+// const printEmployeeInformation = (emp: UnknownEmployee) => {
+//     console.log('Name: ' + emp.name);
+//     if ('privileges' in emp) {
+//         console.log('Privileges: ' + emp.privileges);
+//     }
+//     if ('startDate' in emp) {
+//         console.log('Start Date: ' + emp.startDate);
+//     }
+// }
+
+// printEmployeeInformation(combain)
+
+
+// class Car {
+//     drive() {
+//         console.log('Driving...');
+//     }
+// }
+
+// class Truck {
+//     drive() {
+//         console.log('Driving a truck...');
+//     }
+
+//     loadCargo(amount: number) {
+//         console.log('Loading cargo ...' + amount);
+//     }
+// }
+
+// type Vihicle = Car | Truck
+
+// const v1 = new Car()
+// const v2 = new Truck()
+
+// function useVihivle (vih: Vihicle) {
+//     vih.drive()
+//     if (vih instanceof Truck) {
+//         vih.loadCargo(1000)
+//     }
+// }
+
+// useVihivle(v1)
+// useVihivle(v2)
+
+
+// interface Bird{
+//     type: 'bird';
+//     flyingSpeed: number
+// }
+
+// interface Horse{
+//     type: 'horse';
+//     runningSpeed: number
+// }
+
+// type Animal = Bird | Horse
+
+// function moveAnimal(animal: Animal) {
+//     let speed;
+//     switch (animal.type) {
+//         case 'bird':
+//             speed = animal.flyingSpeed;
+//             break;
+//         case 'horse':
+//             speed = animal.runningSpeed
+//     }
+//     console.log(speed);
+// }
+
+// moveAnimal({type: 'bird', flyingSpeed: 1000})
+
+
+
+// // const userInput = <HTMLInputElement>document.getElementById('user-input')!
+// const userInput = document.getElementById('user-input')! as HTMLInputElement
+
+
+
+// interface ErrorConteainer{
+//     [prop: string]: string
+// }
+
+// const errorBag: ErrorConteainer = {
+//     email: 'Not a valid email!',
+//     username:'Must start with a capital character!'
+// }
+
+
+
+// Generic ----------------------------------------------------------------
+
+
+// const names: Array<string> = []
+// const mm: string[] = []
+
+
+function merge<T extends object, U extends object >(objA: T, objB: U) {
+  return Object.assign(objA, objB);
 }
 
-type Employee = {
-    name: string;
-    startDate: Date;
+const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+console.log(mergedObj);
+
+
+interface Length {
+    length: number
 }
 
-type Combat = Admin & Employee
-
-const combain: Combat = {
-    name: 'Combat',
-    privileges: ['create-server'],
-    startDate: new Date()
-}
-
-type Combinable = string | number
-type Numeric = number | boolean
-
-type Universal = Combinable & Numeric
-
-const add = (a: Combinable, b: Combinable) => {
-    if (typeof a === 'string' || typeof b === 'string') {
-        return a.toString() + b.toString()
+function countAndDescribe<T extends Length>(element: T): [T, string] {
+    let descriptionText = 'Go no value.';
+    if (element.length === 1) {
+        descriptionText = 'Go 1 element.';
+    } else if (element.length > 1) {
+        descriptionText = 'Go ' + element.length + ' elements.'; 
     }
-    return a + a
+    return [element, descriptionText];
 }
 
-type UnknownEmployee = Employee | Admin
+console.log(countAndDescribe(['Sports', 'Cooking']));
 
-const printEmployeeInformation = (emp: UnknownEmployee) => {
-    console.log('Name: ' + emp.name);
-    if ('privileges' in emp) {
-        console.log('Privileges: ' + emp.privileges);
-    }
-    if ('startDate' in emp) { 
-        console.log('Start Date: ' + emp.startDate);
-    }
+
+function extreactAndConvert<T extends object, U extends keyof T>(
+    obj: T,
+    key: U
+) {
+    return 'Value: ' + obj[key]
 }
-
-printEmployeeInformation(combain)
-
-
-class Car {
-    drive() {
-        console.log('Driving...');
-    }
-}
-
-class Truck {
-    drive() {
-        console.log('Driving a truck...');
-    }
-
-    loadCargo(amount: number) {
-        console.log('Loading cargo ...' + amount);
-    }
-}
-
-type Vihicle = Car | Truck
-
-const v1 = new Car()
-const v2 = new Truck()
-
-function useVihivle (vih: Vihicle) {
-    vih.drive()
-    if (vih instanceof Truck) { 
-        vih.loadCargo(1000)
-    }
-}
-
-useVihivle(v1)
-useVihivle(v2)
+extreactAndConvert({ name: 'Max' }, 'name')
 
 
-interface Bird{
-    type: 'bird';
-    flyingSpeed: number
-}
+// class Any {
+//     private date = []
 
-interface Horse{
-    type: 'horse';
-    runningSpeed: number
-}
+//     getItem() {
+//         return [...this.date]
+//     }
+// }
 
-type Animal = Bird | Horse
-
-function moveAnimal(animal: Animal) {
-    let speed;
-    switch (animal.type) {
-        case 'bird':
-            speed = animal.flyingSpeed;
-            break;
-        case 'horse':
-            speed = animal.runningSpeed
-    }
-    console.log(speed);
-}
-
-moveAnimal({type: 'bird', flyingSpeed: 1000})
-
-
-
-// const userInput = <HTMLInputElement>document.getElementById('user-input')!
-const userInput = document.getElementById('user-input')! as HTMLInputElement
-
-
-
-interface ErrorConteainer{
-    [prop: string]: string
-}
-
-const errorBag: ErrorConteainer = {
-    email: 'Not a valid email!',
-    username:'Must start with a capital character!'
-}
-
-
+// class Any2 extends Any{
+//     super(getItem())
+// }
