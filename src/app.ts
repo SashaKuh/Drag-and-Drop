@@ -88,12 +88,12 @@
 
 // Interface ----------------------------------------------------------------
 
-interface Person{
-    name: string;
-    age: number;
+// interface Person{
+//     name: string;
+//     age: number;
 
-    great(phrase: string): void;
-}
+//     great(phrase: string): void;
+// }
 
 // let user: Person;
 
@@ -106,15 +106,121 @@ interface Person{
 // }
 // user.great('hi hello world')
 
-class People implements Person {
-    name = 'John';
-    age = 34;
+// class People implements Person {
+//     name = 'John';
+//     age = 34;
 
-    great(phrase: string): void {
-        console.log(phrase + ' ' + this.name);
+//     great(phrase: string): void {
+//         console.log(phrase + ' ' + this.name);
+//     }
+// }
+
+// const people = new People
+// people.great('hi hello world')
+
+
+
+// Advanced types ----------------------------------------------------------------
+
+type Admin = {
+    name: string;
+    privileges: string[];
+}
+
+type Employee = {
+    name: string;
+    startDate: Date;
+}
+
+type Combat = Admin & Employee
+
+const combain: Combat = {
+    name: 'Combat',
+    privileges: ['create-server'],
+    startDate: new Date()
+}
+
+type Combinable = string | number
+type Numeric = number | boolean
+
+type Universal = Combinable & Numeric
+
+const add = (a: Combinable, b: Combinable) => {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString()
+    }
+    return a + a
+}
+
+type UnknownEmployee = Employee | Admin
+
+const printEmployeeInformation = (emp: UnknownEmployee) => {
+    console.log('Name: ' + emp.name);
+    if ('privileges' in emp) {
+        console.log('Privileges: ' + emp.privileges);
+    }
+    if ('startDate' in emp) { 
+        console.log('Start Date: ' + emp.startDate);
     }
 }
 
-const people = new People 
-people.great('hi hello world')
+printEmployeeInformation(combain)
 
+
+class Car {
+    drive() {
+        console.log('Driving...');
+    }
+}
+
+class Truck {
+    drive() {
+        console.log('Driving a truck...');
+    }
+
+    loadCargo(amount: number) {
+        console.log('Loading cargo ...' + amount);
+    }
+}
+
+type Vihicle = Car | Truck
+
+const v1 = new Car()
+const v2 = new Truck()
+
+function useVihivle (vih: Vihicle) {
+    vih.drive()
+    if (vih instanceof Truck) { 
+        vih.loadCargo(1000)
+    }
+}
+
+useVihivle(v1)
+useVihivle(v2)
+
+
+interface Bird{
+    type: 'bird';
+    flyingSpeed: number
+}
+
+interface Horse{
+    type: 'horse';
+    runningSpeed: number
+}
+
+type Animal = Bird | Horse
+
+function moveAnimal(animal: Animal) {
+    let speed;
+    switch (animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed
+    }
+    console.log(speed);
+}
+
+moveAnimal({type: 'bird', flyingSpeed: 1000})
