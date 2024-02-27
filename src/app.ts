@@ -250,38 +250,38 @@
 // const mm: string[] = []
 
 
-function merge<T extends object, U extends object >(objA: T, objB: U) {
-  return Object.assign(objA, objB);
-}
+// function merge<T extends object, U extends object >(objA: T, objB: U) {
+//   return Object.assign(objA, objB);
+// }
 
-const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
-console.log(mergedObj);
-
-
-interface Length {
-    length: number
-}
-
-function countAndDescribe<T extends Length>(element: T): [T, string] {
-    let descriptionText = 'Go no value.';
-    if (element.length === 1) {
-        descriptionText = 'Go 1 element.';
-    } else if (element.length > 1) {
-        descriptionText = 'Go ' + element.length + ' elements.'; 
-    }
-    return [element, descriptionText];
-}
-
-console.log(countAndDescribe(['Sports', 'Cooking']));
+// const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+// console.log(mergedObj);
 
 
-function extreactAndConvert<T extends object, U extends keyof T>(
-    obj: T,
-    key: U
-) {
-    return 'Value: ' + obj[key]
-}
-extreactAndConvert({ name: 'Max' }, 'name')
+// interface Length {
+//     length: number
+// }
+
+// function countAndDescribe<T extends Length>(element: T): [T, string] {
+//     let descriptionText = 'Go no value.';
+//     if (element.length === 1) {
+//         descriptionText = 'Go 1 element.';
+//     } else if (element.length > 1) {
+//         descriptionText = 'Go ' + element.length + ' elements.'; 
+//     }
+//     return [element, descriptionText];
+// }
+
+// console.log(countAndDescribe(['Sports', 'Cooking']));
+
+
+// function extreactAndConvert<T extends object, U extends keyof T>(
+//     obj: T,
+//     key: U
+// ) {
+//     return 'Value: ' + obj[key]
+// }
+// extreactAndConvert({ name: 'Max' }, 'name')
 
 
 // class Any {
