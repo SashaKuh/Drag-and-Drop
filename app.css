@@ -58,6 +58,7 @@ button:active {
 .projects {
   margin: 1rem;
   border: 1px solid #ff0062;
+      width: -webkit-fill-available;
 }
 
 .projects header {
@@ -97,6 +98,7 @@ button:active {
 .projects li h2 {
   color: #ff0062;
   margin: 0.5rem 0;
+  
 }
 
 #finished-projects li h2 {
@@ -125,4 +127,9 @@ button:active {
   padding: 1rem;
   border: 1px solid #ff0062;
   background: #f7f7f7;
+}
+
+#active-finished-projects{
+  display: flex;
+  justify-content: space-around;
 }

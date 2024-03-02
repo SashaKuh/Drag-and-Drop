@@ -355,5 +355,13 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>{
 }
 
 const prjInput = new ProjectInput()
-const activePrjList = new ProjectList('active')
-const finishedPrjList = new ProjectList('finished')
+
+
+const projectListContainer = document.getElementById('active-finished-projects')!;
+
+const activePrjList = new ProjectList('active');
+const finishedPrjList = new ProjectList('finished');
+
+projectListContainer.appendChild(activePrjList.element);
+projectListContainer.appendChild(finishedPrjList.element);
+
