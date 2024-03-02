@@ -262,5 +262,8 @@ __decorate([
     autobind
 ], ProjectInput.prototype, "submitHandler", null);
 const prjInput = new ProjectInput();
+const projectListContainer = document.getElementById('active-finished-projects');
 const activePrjList = new ProjectList('active');
 const finishedPrjList = new ProjectList('finished');
+projectListContainer.appendChild(activePrjList.element);
+projectListContainer.appendChild(finishedPrjList.element);
